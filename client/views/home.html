@@ -1,3 +1,26 @@
 <template name="home">
-  <h1>HOME TEMPLATE</h1>
+  <div class="container container-spacing">
+    <div class="row">
+      <div class="col-md-7">
+        <ul class="media-list">
+          <li class="media">
+            <textarea class="form-control" rows="3"></textarea>
+          </li>
+          {{> table_tweet_text}}
+          {{> table_tweet_text}}
+          {{> table_tweet_text}}
+          {{> table_tweet_text}}
+        </ul>
+      </div>
+      <div class="col-md-5">
+        <div class="list-group">
+          <a href="#" class="list-group-item">Cras justo odio</a>
+          <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+          <a href="#" class="list-group-item">Morbi leo risus</a>
+          <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+          <a href="#" class="list-group-item">Vestibulum at eros</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

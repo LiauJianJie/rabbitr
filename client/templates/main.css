@@ -5,3 +5,11 @@ body {
 .navbar-brand-img {
   margin-top: -5px;
 }
+
+.container-spacing {
+  padding-top: 30px;
+}
+
+textarea {
+   resize: none;
+}

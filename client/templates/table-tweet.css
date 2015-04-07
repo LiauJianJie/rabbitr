@@ -1,0 +1,27 @@
+.table-tweet-dp, .table-tweet-dp img {
+  width:  48px !important;
+  height: 48px !important;
+}
+
+.table-tweet-dp {
+  /*margin: 0;*/
+  position: relative;
+  display: block;
+  padding-left:  15px;
+  padding-right: 15px;
+  float: left;
+}
+
+.table-tweet-content {
+  /*margin: 0;*/
+  margin-left: 0 !important;
+  position: relative;
+  display: block;
+  padding-right: 15px;
+  float: right;
+  /*width: auto !important;*/
+}
+
+/*.table-tweet {
+  border-bottom: 1px solid #ccc;
+}*/

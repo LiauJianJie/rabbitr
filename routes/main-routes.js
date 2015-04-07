@@ -4,5 +4,5 @@ Router.configure({
 
 Router.route('/', function () {
   this.render('home');
-  SEO.set({ title: 'Shitter - ' + Meteor.App.NAME });
+  SEO.set({ title: 'Rabbitr - ' + Meteor.App.NAME });
 });
