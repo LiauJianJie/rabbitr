@@ -1,18 +1,18 @@
 Tweets = new Mongo.Collection("tweets");
 
 if (Meteor.isClient) {
-
   Meteor.subscribe("tweets");
 
-  Template.body.helpers({
+  Template.home.helpers({
     tweets: function () {
-      return Tweets.find({});
+      return Tweets.find({}, {sort: {createdAt: -1}});
     }
   });
 
-  Template.body.events({
+  Template.home.events({
     "submit .new-tweet": function (event) {
-      console.log(event.target.text.value);
+      console.log(event);
+      // console.log(event.target.text.value);
       var text = event.target.text.value;
       Meteor.call("addTweet", text);
       event.target.text.value = "";
