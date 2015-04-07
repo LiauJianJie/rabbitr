@@ -5,6 +5,8 @@ if (Meteor.isClient) {
 
   Template.home.helpers({
     tweets: function () {
+      // var retrievedTweets = Tweets.find({}, {sort: {createdAt: -1}});
+      // console.log(retrievedTweets);
       return Tweets.find({}, {sort: {createdAt: -1}});
     }
   });

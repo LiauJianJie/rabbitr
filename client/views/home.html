@@ -7,6 +7,10 @@
             <li class="media">
               {{> tweet_compose_box}}
             </li>
+          {{else}}
+            <li class="media">
+              {{> tweet_new_user}}
+            </li>
           {{/if}}
           {{#each tweets}}
             {{> table_tweet_text}}
