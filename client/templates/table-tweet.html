@@ -1,3 +1,52 @@
+<template name="tweet_compose_box">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form class="new-tweet">
+        <div class="form-group">
+          <textarea class="form-control" rows="1" type="text"
+                    name="text" id="tweet-compose-field"
+                    placeholder="What's on your mind?"></textarea>
+        </div>
+        <div class="form-group">
+          <span class="pull-left tweet-compose-charcount">
+            140 characters remaining...
+          </span>
+          <button type="submit" class="btn btn-primary pull-right"
+                  id="tweet-compose-submit">Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  {{> tweet_compose_box_js}}
+</template>
+
+<template name="tweet_compose_box_js">
+  <script>
+  $(document).ready(function() {
+    function removeLinebreaksAndAutosize() {
+      var composeText = $("#tweet-compose-field").val();
+      composeText = composeText.replace(/(\r\n|\n|\r)/gm," ");
+      $("#tweet-compose-field").val(composeText);
+      $("#tweet-compose-field").autosize();
+    }
+
+    $("#tweet-compose-field").keypress(function(event) {
+      if(event.which == '13') {
+        $("#tweet-compose-submit").click();
+        return false;
+      }
+    });
+
+    $('#tweet-compose-field').keyup(function(){
+      removeLinebreaksAndAutosize();
+    });
+    $('#tweet-compose-field').change(function(){
+      removeLinebreaksAndAutosize();
+    });
+  });
+  </script>
+</template>
+
 <template name="table_tweet_text">
   <li class="media table-tweet">
     <div class="media-left">
@@ -7,8 +56,12 @@
       </a>
     </div>
     <div class="media-body">
-      <div class="col-md-6 media-heading table-tweet-username"><b>@{{username}}</b></div>
-      <div class="col-md-6 table-tweet-time"><span class="pull-right">6 hours ago</span></div>
+      <div class="col-md-6 col-xs-6 media-heading table-tweet-username">
+        <b>@{{username}}</b>
+      </div>
+      <div class="col-md-6 col-xs-6 table-tweet-time">
+        <span class="pull-right">6 hours ago</span>
+      </div>
       <div class="col-md-12 table-tweet-text">{{text}}</div>
     </div>
   </li>

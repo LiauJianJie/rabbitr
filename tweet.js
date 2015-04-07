@@ -11,11 +11,13 @@ if (Meteor.isClient) {
 
   Template.home.events({
     "submit .new-tweet": function (event) {
-      console.log(event);
-      // console.log(event.target.text.value);
       var text = event.target.text.value;
-      Meteor.call("addTweet", text);
-      event.target.text.value = "";
+      if (text.length > 0)
+      {
+        Meteor.call("addTweet", text);
+        event.target.text.value = "";
+        $("#tweet-compose-field").autosize();
+      }
       return false;
     }
   });
@@ -48,6 +50,7 @@ Meteor.methods({
 
     Tweets.remove(tweetId);
   }
+
 });
 
 if (Meteor.isServer) {
