@@ -23,10 +23,9 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.home.events({
-  });
-
-  Meteor.call("readAllNotifications");
+  Template.table_notifications_mention.created = function() {
+    Meteor.call("readAllNotifications");
+  };
 }
 
 Meteor.methods({
