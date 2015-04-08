@@ -4,7 +4,7 @@ if (Meteor.isClient) {
   Meteor.subscribe("tweets");
 
   Template.home.helpers({
-    tweets: function () {
+    tweets: function() {
       // var retrievedTweets = Tweets.find({}, {sort: {createdAt: -1}});
       // console.log(retrievedTweets);
       return Tweets.find({}, {sort: {createdAt: -1}});
@@ -12,7 +12,7 @@ if (Meteor.isClient) {
   });
 
   Template.home.events({
-    "submit .new-tweet": function (event) {
+    "submit .new-tweet": function(event) {
       var text = event.target.text.value;
       if (text.length > 0)
       {
@@ -23,27 +23,23 @@ if (Meteor.isClient) {
       return false;
     }
   });
-
-  Accounts.ui.config({
-    passwordSignupFields: "USERNAME_ONLY"
-  });
 }
 
 Meteor.methods({
-  addTweet: function (text) {
+  addTweet: function(text) {
     // Make sure the user is logged in before inserting a tweet
-    if (! Meteor.userId()) {
+    if (!Meteor.userId())
       throw new Meteor.Error("not-authorized");
-    }
 
-    Tweets.insert({
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
-      text: text,
+    var tweetId = Tweets.insert({
+      owner:     Meteor.userId(),
+      username:  Meteor.user().username,
+      text:      text,
       createdAt: new Date()
     });
+    Meteor.call("addNotificationForTweet",tweetId);
   },
-  deleteTweet: function (tweetId) {
+  deleteTweet: function(tweetId) {
     var tweet = Tweets.findOne(tweetId);
     if (tweet.owner !== Meteor.userId()) {
       // If the tweet is private, make sure only the owner can delete it
@@ -57,10 +53,9 @@ Meteor.methods({
 
 if (Meteor.isServer) {
   // Only publish tweets that are public or belong to the current user
-  Meteor.publish("tweets", function () {
+  Meteor.publish("tweets", function() {
     return Tweets.find({
       $or: [
-        { private: {$ne: true} },
         { owner: this.userId }
       ]
     });
