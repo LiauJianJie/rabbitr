@@ -2,16 +2,31 @@ Notifications = new Mongo.Collection("notifications");
 
 if (Meteor.isClient) {
   Meteor.subscribe("notifications");
+  Meteor.subscribe("notifications-count");
 
   Template.registerHelper("notifications", function() {
     return Notifications.find({}, {sort: {createdAt: -1}});
   });
-  // Template.registerHelper("notificationsUnreadCount", function() {
-  //   return Notifications.find({receipient:Meteor.userId(),read:false}).length;
-  // });
+  Template.registerHelper("notificationsUnreadCount", function() {
+    return Notifications.find({receipient:Meteor.userId(),read:false}).count();
+  });
+
+  Template.table_notifications_mention.helpers({
+    usernameForUserId: function(userId){
+      return Meteor.users.findOne({_id:userId}).username;
+    },
+    tweetTextForTweetId: function(tweetId){
+      return Tweets.findOne({_id:tweetId}).text;
+    },
+    relativeDateForTweetId: function(tweetId){
+      return moment(Tweets.findOne({_id:tweetId}).date).fromNow();
+    }
+  });
 
   Template.home.events({
   });
+
+  // Meteor.call("readAllNotifications");
 }
 
 Meteor.methods({
@@ -42,9 +57,14 @@ Meteor.methods({
     var notification = Notifications.insert({
       sender:     Meteor.userId(),
       receipient: receipientId,
+      type:       "mention",
       tweet:      tweetId,
-      read:       false
+      read:       false,
+      createdAt:  new Date()
     });
+  },
+  readAllNotifications: function() {
+    Notifications.update({read:false}, {$set: {read:true}});
   },
   readNotification: function(notificationId) {
     var notification = Notifications.findOne(notificationId);
@@ -58,10 +78,6 @@ Meteor.methods({
 if (Meteor.isServer) {
   // Only publish tweets that are public or belong to the current user
   Meteor.publish("notifications", function() {
-    return Notifications.find({
-      $or: [
-        { receipient: this.userId }
-      ]
-    });
+    return Notifications.find({$or: [{ receipient: this.userId }]});
   });
 }

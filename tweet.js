@@ -3,6 +3,13 @@ Tweets = new Mongo.Collection("tweets");
 if (Meteor.isClient) {
   Meteor.subscribe("tweets");
 
+  Template.registerHelper("relativeTimeForDate", function(date) {
+    return moment(date).fromNow();
+  });
+  Template.registerHelper("usernameForUserId", function(userId) {
+    return Meteor.users.findOne({_id:userId});
+  });
+
   Template.home.helpers({
     tweets: function() {
       // var retrievedTweets = Tweets.find({}, {sort: {createdAt: -1}});

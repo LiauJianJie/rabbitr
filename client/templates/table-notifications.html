@@ -1,0 +1,28 @@
+<template name="table_notifications">
+  {{> table_notifications_mention}}
+</template>
+
+<template name="table_notifications_mention">
+  <li class="media table-tweet">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object img-rounded" width="48" height="48"
+             src="/images/uiface_sample.jpg" alt="48x48">
+      </a>
+    </div>
+    <div class="media-body">
+      <div class="col-md-6 col-xs-6 media-heading table-tweet-username">
+        <b>
+          <a href="/{{usernameForUserId sender}}">
+            @{{usernameForUserId sender}}</a> mentioned you in a post:
+        </b>
+      </div>
+      <div class="col-md-6 col-xs-6 table-tweet-time">
+        <span class="pull-right">{{relativeDateForTweetId createdAt}}</span>
+      </div>
+      <div class="col-md-12 table-tweet-text">
+        {{tweetTextForTweetId tweet}}
+      </div>
+    </div>
+  </li>
+</template>

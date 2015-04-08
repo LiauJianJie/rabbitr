@@ -22,11 +22,13 @@
             <!-- <li class="{{isActiveRoute regex='home'}}"><a href="#">Home</a></li>
             <li class="{{isActiveRoute regex='notifications'}}">><a href="/notifications">Notifications</a></li>
             <li class="{{isActiveRoute regex='messages'}}">><a href="/messages">Messages</a></li> -->
+            {{#if currentUser}}
               <li><a href="/">Home</a></li>
-              <li><a href="/notifications">Notifications
+              <li><a href="/i/notifications">Notifications
                 <span class="badge">{{notificationsUnreadCount}}</span></a>
               </li>
-              <li><a href="/messages">Messages <span class="badge">42</span></a></li>
+              <li><a href="/i/messages">Messages <span class="badge">42</span></a></li>
+            {{/if}}
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {{> loginButtons}}

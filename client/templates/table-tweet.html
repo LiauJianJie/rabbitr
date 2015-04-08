@@ -73,7 +73,7 @@
     <div class="media-left">
       <a href="#">
         <img class="media-object img-rounded" width="48" height="48"
-             src="images/uiface_sample.jpg" alt="48x48">
+             src="/images/uiface_sample.jpg" alt="48x48">
       </a>
     </div>
     <div class="media-body">
@@ -81,7 +81,7 @@
         <b>@{{username}}</b>
       </div>
       <div class="col-md-6 col-xs-6 table-tweet-time">
-        <span class="pull-right">6 hours ago</span>
+        <span class="pull-right">{{relativeTimeForDate createdAt}}</span>
       </div>
       <div class="col-md-12 table-tweet-text">{{text}}</div>
     </div>

@@ -1,0 +1,15 @@
+<template name="notifications">
+  <div class="container container-spacing">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <ul class="media-list">
+          {{#if currentUser}}
+            {{#each notifications}}
+              {{> table_notifications}}
+            {{/each}}
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
