@@ -14,7 +14,7 @@ if (Meteor.isClient) {
     tweets: function() {
       // var retrievedTweets = Tweets.find({}, {sort: {createdAt: -1}});
       // console.log(retrievedTweets);
-      return Tweets.find({}, {sort: {createdAt: -1}});
+      return Tweets.find({}, {sort: {createdAt: -1},limit: 20});
     }
   });
 
@@ -63,7 +63,8 @@ if (Meteor.isServer) {
   Meteor.publish("tweets", function() {
     return Tweets.find({
       $or: [
-        { owner: this.userId }
+        { }
+        // { owner: this.userId }
       ]
     });
   });

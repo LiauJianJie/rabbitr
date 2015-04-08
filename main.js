@@ -37,10 +37,9 @@ Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options
 
     result = operators[operator](lvalue, rvalue);
 
-    if (result) {
+    if (result)
         return options.fn(this);
-    } else {
+    else
         return options.inverse(this);
-    }
 
 });

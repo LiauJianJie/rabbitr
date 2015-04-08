@@ -5,7 +5,7 @@ if (Meteor.isClient) {
   Meteor.subscribe("notifications-count");
 
   Template.registerHelper("notifications", function() {
-    return Notifications.find({}, {sort: {createdAt: -1}});
+    return Notifications.find({receipient:Meteor.userId()}, {sort: {createdAt: -1}});
   });
   Template.registerHelper("notificationsUnreadCount", function() {
     return Notifications.find({receipient:Meteor.userId(),read:false}).count();
@@ -18,15 +18,15 @@ if (Meteor.isClient) {
     tweetTextForTweetId: function(tweetId){
       return Tweets.findOne({_id:tweetId}).text;
     },
-    relativeDateForTweetId: function(tweetId){
-      return moment(Tweets.findOne({_id:tweetId}).date).fromNow();
+    relativeDateForTweetId: function(createdAt){
+      return moment(createdAt).fromNow();
     }
   });
 
   Template.home.events({
   });
 
-  // Meteor.call("readAllNotifications");
+  Meteor.call("readAllNotifications");
 }
 
 Meteor.methods({
@@ -39,12 +39,15 @@ Meteor.methods({
       throw new Meteor.Error("tweet-not-found");
 
     var splitTweet = tweet.text.split(" ");
+    var sentList = [];
     _.each(splitTweet, function(string){
-      if (string.charAt(0) === "@" && string.length > 1)
+      if (string.charAt(0) === "@" && string.length > 1 &&
+          sentList.indexOf(string) === -1)
         Meteor.call("addNotificationForTweetAndReceipient",{
           tweetId:      tweetId,
           receipientId: Meteor.users.findOne({username:string.substring(1)})._id
         });
+        sentList.push(string);
     });
   },
   addNotificationForTweetAndReceipient: function(notificationData) {
@@ -64,7 +67,9 @@ Meteor.methods({
     });
   },
   readAllNotifications: function() {
-    Notifications.update({read:false}, {$set: {read:true}});
+    Notifications.update({receipient:Meteor.userId(),read:false},
+                         {$set: {read:true}},
+                         {multi: true});
   },
   readNotification: function(notificationId) {
     var notification = Notifications.findOne(notificationId);
@@ -78,6 +83,6 @@ Meteor.methods({
 if (Meteor.isServer) {
   // Only publish tweets that are public or belong to the current user
   Meteor.publish("notifications", function() {
-    return Notifications.find({$or: [{ receipient: this.userId }]});
+    return Notifications.find({$or: [{}]});
   });
 }
