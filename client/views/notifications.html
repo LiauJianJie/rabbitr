@@ -2,13 +2,23 @@
   <div class="container container-spacing">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <ul class="media-list">
-          {{#if currentUser}}
-            {{#each notifications}}
-              {{> table_notifications}}
-            {{/each}}
-          {{/if}}
-        </ul>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul class="media-list">
+              {{#if currentUser}}
+                {{#if notifications}}
+                  {{#each notifications}}
+                    {{> table_notifications}}
+                  {{/each}}
+                {{else}}
+                  <h3 class="signupprompt-header">
+                    <b>You do not have any notifications.</b>
+                  </h3>
+                {{/if}}
+              {{/if}}
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="col-md-2"></div>
     </div>
