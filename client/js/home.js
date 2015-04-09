@@ -58,4 +58,10 @@ if (Meteor.isClient) {
       }
     }
   });
+
+  Template.home.created = function() {
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  };
 }

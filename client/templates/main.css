@@ -13,3 +13,7 @@ body {
 textarea {
    resize: none;
 }
+
+.media-list {
+  margin-bottom: 30px;
+}
