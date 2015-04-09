@@ -9,7 +9,3 @@
 .table-tweet-username {
   margin-bottom: 0 !important;
 }
-
-.table-tweet-handle, .table-tweet-time, .tweet-compose-charcount {
-  color: rgb(119, 119, 119);
-}

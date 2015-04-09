@@ -23,17 +23,17 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <form class="new-tweet">
-        <div class="form-group">
+        <div class="form-group" id="tweet-compose-fieldgroup">
           <textarea class="form-control" rows="1" type="text"
                     name="text" id="tweet-compose-field"
                     placeholder="What's on your mind?"></textarea>
         </div>
         <div class="form-group">
-          <span class="pull-left tweet-compose-charcount">
+          <span class="pull-left text-muted" id="tweet-compose-charcount">
             140 characters remaining...
           </span>
           <button type="submit" class="btn btn-primary pull-right"
-                  id="tweet-compose-submit">Post</button>
+                  id="tweet-compose-submit" disabled="disabled">Post</button>
         </div>
       </form>
     </div>
@@ -80,7 +80,7 @@
       <div class="col-md-6 col-xs-6 media-heading table-tweet-username">
         <b>@{{username}}</b>
       </div>
-      <div class="col-md-6 col-xs-6 table-tweet-time">
+      <div class="col-md-6 col-xs-6 table-tweet-time text-muted">
         <span class="pull-right">{{relativeTimeForDate createdAt}}</span>
       </div>
       <div class="col-md-12 table-tweet-text">{{text}}</div>

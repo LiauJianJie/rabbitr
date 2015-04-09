@@ -1,5 +1,7 @@
 <template name="table_notifications">
-  {{> table_notifications_mention}}
+  <!-- {{#compare type "mention"}} -->
+    {{> table_notifications_mention}}
+  <!-- {{/compare}} -->
 </template>
 
 <template name="table_notifications_mention">
@@ -17,7 +19,7 @@
             @{{usernameForUserId sender}}</a> mentioned you in a post:
         </b>
       </div>
-      <div class="col-md-6 col-xs-6 table-tweet-time">
+      <div class="col-md-6 col-xs-6 table-tweet-time text-muted">
         <span class="pull-right">{{relativeDateForTweetId createdAt}}</span>
       </div>
       <div class="col-md-12 table-tweet-text">
