@@ -17,3 +17,8 @@ Router.route('/i/messages', function () {
 Router.route('/i/settings', function () {
   this.render('settings');
 });
+
+Router.route('/:username', function () {
+  var item = Meteor.users.findOne({username: this.params.username});
+  this.render('profile', {data: item});
+});

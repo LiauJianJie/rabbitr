@@ -30,3 +30,13 @@ textarea {
 .signupprompt-text {
   margin-top: 0;
 }
+
+.nav-tabs {
+  margin-top:   20px;
+  margin-left:  -30px;
+  margin-right: -30px;
+}
+
+.nav-tabs-firsttab {
+  margin-left: 30px;
+}
