@@ -2,19 +2,35 @@
   <div class="container container-spacing">
     <div class="row">
       <div class="col-md-7">
-        <ul class="media-list">
-          {{#if currentUser}}
-            <li class="media">
-              {{> tweet_compose_box}}
-            </li>
-          {{else}}
-            <li class="media">
-              {{> tweet_new_user}}
+        <ul class="list-group">
+          <li class="list-group-item">
+            {{#if currentUser}}
+              <li class="media new-tweet-media">
+                {{> tweet_compose_box}}
+              </li>
+            {{else}}
+              <li class="media">
+                {{> tweet_new_user}}
+              </li>
+            {{/if}}
+          </li>
+          {{#if tweets}}
+            <li class="list-group-item">
+              <ul class="media-list">
+                {{#each tweets}}
+                  {{> table_tweet_text}}
+                {{/each}}
+              </ul>
             </li>
           {{/if}}
-          {{#each tweets}}
-            {{> table_tweet_text}}
-          {{/each}}
+          {{#if moreResults}}
+            <li class="list-group-item ">
+            <button type="button" class="btn btn-default btn-block"
+                    id="loadpost-button">
+              Load more posts
+            </button>
+            </li>
+          {{/if}}
         </ul>
       </div>
       <div class="col-md-5">
@@ -23,13 +39,28 @@
             <b>Statistics</b>
           </li>
           <li href="#" class="list-group-item">
-            Total tweets: {{tweetCount}}
+            Total tweets:
+            {{#if tweetCount}}
+              {{tweetCount}}
+            {{else}}
+              <i class="text-muted">loading...</i>
+            {{/if}}
           </li>
           <li href="#" class="list-group-item">
-            Total notifications: {{notificationCount}}
+            Total notifications:
+            {{#if notificationCount}}
+              {{notificationCount}}
+            {{else}}
+              <i class="text-muted">loading...</i>
+            {{/if}}
           </li>
           <li href="#" class="list-group-item">
-            Total users: {{userCount}}
+            Total users:
+            {{#if userCount}}
+              {{userCount}}
+            {{else}}
+              <i class="text-muted">loading...</i>
+            {{/if}}
           </li>
           <!-- <a href="#" class="list-group-item">Vestibulum at eros</a> -->
         </ul>

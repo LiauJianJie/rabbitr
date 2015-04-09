@@ -6,6 +6,10 @@ body {
   margin-top: -5px;
 }
 
+.navbar-brand-title {
+  color: black;
+}
+
 .container-spacing {
   padding-top: 30px;
 }
@@ -15,5 +19,14 @@ textarea {
 }
 
 .media-list {
-  margin-bottom: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.signupprompt-header {
+  margin-top: 10px;
+}
+
+.signupprompt-text {
+  margin-top: 0;
 }
