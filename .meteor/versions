@@ -11,7 +11,6 @@ blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
 check@1.0.5
-coffeescript@1.0.6
 copleykj:jquery-autosize@1.17.8
 dburles:mongo-collection-instances@0.3.3
 ddp@1.1.0
@@ -75,5 +74,3 @@ underscore@1.0.3
 url@1.0.4
 webapp@1.2.0
 webapp-hashing@1.0.3
-wizonesolutions:underscore-string@1.0.0
-zimme:iron-router-active@1.0.1
