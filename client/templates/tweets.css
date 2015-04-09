@@ -11,6 +11,14 @@
   padding-left: 0 !important;
 }
 
+.table-tweet-username-text:link,
+.table-tweet-username-text:visited,
+.table-tweet-username-text:hover,
+.table-tweet-username-text:active {
+  text-decoration: none !important;
+  color:           black !important;
+}
+
 .table-tweet-time, .table-tweet-text {
   padding-right: 0 !important;
 }

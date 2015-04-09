@@ -18,15 +18,16 @@
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
           <ul class="nav navbar-nav">
             {{#if currentUser}}
-              <li><a href="/">Home</a></li>
-              <li>
+              <li class="{{isActivePath regex='^\/$'}}">
+                <a href="/">Home</a>
+              </li>
+              <li class="{{isActivePath regex='^\/i\/notifications$'}}">
                 <a href="/i/notifications">Notifications
                   {{#if notificationsUnreadCount}}
                     <span class="badge">{{notificationsUnreadCount}}</span>
                   {{/if}}
                 </a>
               </li>
-              <!-- <li><a href="/i/messages">Messages <span class="badge">42</span></a></li> -->
             {{/if}}
           </ul>
           <ul class="nav navbar-nav navbar-right">
