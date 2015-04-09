@@ -1,4 +1,19 @@
 if (Meteor.isClient) {
+  Template.home.helpers({
+    tweets: function() {
+      return Tweets.find({}, {sort: {createdAt: -1},limit: 20});
+    },
+    tweetCount: function() {
+      return Counts.get("tweetCounter");
+    },
+    notificationCount: function() {
+      return Counts.get("notificationCounter");
+    },
+    userCount: function() {
+      return Counts.get("accountCounter");
+    }
+  });
+
   Template.home.events({
     "submit .new-tweet": function(event) {
       var text = event.target.text.value;
@@ -6,15 +21,13 @@ if (Meteor.isClient) {
       {
         Meteor.call("addTweet", text);
         event.target.text.value = "";
-        $("#tweet-compose-field").autosize();
-        // Template.home.call("keyup #tweet-compose-field")
       }
       return false;
     },
     "keyup #tweet-compose-field, \
      keydown #tweet-compose-field, \
      keypress #tweet-compose-field": function (event) {
-      console.log(event);
+      $("#tweet-compose-field").autosize();
       var charactersRemaining = 140-event.target.value.length;
       if (charactersRemaining > 1 || charactersRemaining === 0)
         $("#tweet-compose-charcount").html(charactersRemaining +

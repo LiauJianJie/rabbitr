@@ -26,12 +26,12 @@
               <li><a href="/">Home</a></li>
               <li>
                 <a href="/i/notifications">Notifications
-                  <!-- {{#compare notificationsUnreadCount "0"}} -->
+                  {{#if notificationsUnreadCount}}
                     <span class="badge">{{notificationsUnreadCount}}</span>
-                  <!-- {{/compare}} -->
+                  {{/if}}
                 </a>
               </li>
-              <li><a href="/i/messages">Messages <span class="badge">42</span></a></li>
+              <!-- <li><a href="/i/messages">Messages <span class="badge">42</span></a></li> -->
             {{/if}}
           </ul>
           <ul class="nav navbar-nav navbar-right">
