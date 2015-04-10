@@ -39,12 +39,6 @@ if (Meteor.isClient) {
     }
   };
 
-  var loadTweet = function() {
-    var ITEMS_INCREMENT = 25;
-    Session.set("tweetsLimit",
-      Session.get("tweetsLimit") + ITEMS_INCREMENT);
-  };
-
   Template.home.helpers({
     tweets: function() {
       return Tweets.find({}, {sort: {createdAt: -1}, limit:Session.get("tweetsLimit")});
@@ -57,13 +51,14 @@ if (Meteor.isClient) {
     },
     userCount: function() {
       return Counts.get("accountCounter");
-    },
-    moreResults: function() {
-        // If, once the subscription is ready, we have less rows than we
-        // asked for, we've got all the rows in the collection.
-        return !(Tweets.find().count() < Session.get("tweetsLimit"));
     }
   });
+
+  var loadTweet = function() {
+    var ITEMS_INCREMENT = 25;
+    Session.set("tweetsLimit",
+      Session.get("tweetsLimit") + ITEMS_INCREMENT);
+  };
 
   Template.home.events({
     "submit .new-tweet": function(event) {
@@ -91,10 +86,4 @@ if (Meteor.isClient) {
     },
     "click #loadpost-button": loadTweet
   });
-
-  Template.home.created = function() {
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip();
-    });
-  };
 }

@@ -2,42 +2,64 @@
   <div class="container container-spacing">
     <div class="row">
       {{#if username}}
-      <div class="col-md-8 col-md-offset-2 profile-col">
-        <div class="panel panel-default profile-panel">
-          <div class="panel-body profile-panel-body">
-            <div class="col-xs-3 col-sm-3 col-md-3 profile-pic-col">
-              <img class="media-object img-rounded profile-pic"
-                   src="/images/uiface_sample.jpg" alt="48x48">
+      <div class="col-md-8 col-md-offset-2">
+        <ul class="list-group profile-listgroup-group">
+          <li class="list-group-item profile-listgroup-item">
+            <div class="row">
+              <div class="col-xs-3 col-sm-3 col-md-3 profile-pic-col">
+                <img class="img-rounded profile-pic"
+                     src="/images/uiface_sample.jpg" alt="48x48">
+              </div>
+              <div class="col-xs-9 col-sm-9 col-md-9 profile-info-col">
+                <h2>@{{username}}</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lacus diam, commodo et ante ac, scelerisque convallis tellus. Mauris sit amet posuere ante.</p>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 profile-buttons-col">
+                {{#if isUserForUsername username}}
+                  <a type="button" class="btn btn-default" href="/i/profile">
+                    Edit profile
+                  </a>&nbsp;
+                  <a type="button" class="btn btn-default" href="/i/settings">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                  </a>
+                {{else}}
+                  <button type="button" class="btn btn-primary">Follow</button>&nbsp;
+                  <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                  </button>
+                {{/if}}
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <ul class="nav nav-tabs">
+                  <li role="presentation" class="active nav-tabs-firsttab"><a href="#">Posts</a></li>
+                  <li role="presentation"><a href="#">Following</a></li>
+                  <li role="presentation"><a href="#">Followers</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 profile-content-col">
+                {{#if tweetsbyCurrentUser username}}
+                  <div class="profile-listgroup-content">
+                    <ul class="media-list">
+                      {{#each tweetsbyCurrentUser username}}
+                        {{> table_tweet_text}}
+                      {{/each}}
+                    </ul>
+                  </div>
+                {{/if}}
+              </div>
             </div>
-            <div class="col-xs-9 col-sm-9 col-md-9 profile-info-col">
-              <h2>@{{username}}</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lacus diam, commodo et ante ac, scelerisque convallis tellus. Mauris sit amet posuere ante.</p>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 profile-buttons-col">
-              {{#if isUserForUsername username}}
-                <button type="button" class="btn btn-default">Edit profile</button>&nbsp;
-                <a type="button" class="btn btn-default" href="/i/settings">
-                  <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings
-                </a>
-              {{else}}
-                <button type="button" class="btn btn-primary">Follow</button>&nbsp;
-                <button type="button" class="btn btn-default">
-                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Message
+          </li>
+          {{#if moreResults}}
+            <li class="list-group-item profile-listgroup-item">
+              <div class="profile-listgroup-content">
+                <button type="button" class="btn btn-default btn-block"
+                        id="loadpost-button">
+                  Load more posts
                 </button>
-              {{/if}}
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-              <ul class="nav nav-tabs">
-                <li role="presentation" class="active nav-tabs-firsttab"><a href="#">Posts</a></li>
-                <li role="presentation"><a href="#">Following</a></li>
-                <li role="presentation"><a href="#">Followers</a></li>
-              </ul>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-              <h2 class="text-muted">Posts go here</h2>
-            </div>
-          </div>
-        </div>
+              </div>
+            </li>
+          {{/if}}
+        </ul>
       </div>
       <div class="col-md-2"></div>
       {{else}}

@@ -6,8 +6,18 @@ if (Meteor.isClient) {
         return true;
       return false;
     },
-    tweetsForUsername: function(username) {
+    tweetsbyCurrentUser: function(username) {
       return Tweets.find({username:username}, {sort: {createdAt: -1}, limit:Session.get("tweetsLimit")});
     }
   });
+
+  var loadTweet = function() {
+    var ITEMS_INCREMENT = 25;
+    Session.set("tweetsLimit",
+      Session.get("tweetsLimit") + ITEMS_INCREMENT);
+  };
+
+  Template.profile.events({
+    "click #loadpost-button": loadTweet
+  })
 }
