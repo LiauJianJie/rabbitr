@@ -11,7 +11,12 @@ body {
 }
 
 .container-spacing {
-  padding-top: 30px;
+  padding-top: 10px;
+}
+@media only screen and (min-width : 768px) {
+  .container-spacing {
+    padding-top: 30px;
+  }
 }
 
 textarea {
@@ -33,10 +38,66 @@ textarea {
 
 .nav-tabs {
   margin-top:   20px;
-  margin-left:  -30px;
-  margin-right: -30px;
+  margin-left:  -15px;
+  margin-right: -15px;
 }
 
 .nav-tabs-firsttab {
-  margin-left: 30px;
+  margin-left: 15px;
+}
+
+.profile-panel-body {
+  padding-left:  0;
+  padding-right: 0;
+}
+
+.profile-pic-col, .profile-info-col {
+  padding-bottom: 15px;
+}
+
+.profile-info-col h2 {
+  margin-top: 10px;
+}
+
+@media only screen and (max-width : 767px) {
+  .profile-pic {
+    width:  100%;
+    height: 100%;
+  }
+  .profile-panel {
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .nav-tabs {
+    margin-left:  -30px;
+    margin-right: -30px;
+  }
+  .profile-info-col h2 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+  .profile-info-col h4 {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width : 768px) {
+  .profile-pic {
+    width:  100%;
+    height: 100%;
+  }
+  .profile-pic-col, .profile-buttons-col {
+    padding-left: 30px;
+  }
+  .profile-info-col, .profile-buttons-col {
+    padding-right: 30px;
+  }
+  .profile-pic-col, .profile-info-col {
+    padding-top:    15px;
+  }
+}
+
+.profile-nouser-frown {
+  font-size: 144px;
 }

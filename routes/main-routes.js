@@ -20,5 +20,8 @@ Router.route('/i/settings', function () {
 
 Router.route('/:username', function () {
   var item = Meteor.users.findOne({username: this.params.username});
-  this.render('profile', {data: item});
+  // this.wait(Meteor.subscribe('users', this.params.username));
+  // if (this.ready()) {
+    this.render('profile', {data: item});
+  // }
 });
