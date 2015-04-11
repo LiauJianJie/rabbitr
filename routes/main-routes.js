@@ -20,8 +20,9 @@ Router.route('/i/settings', function () {
 
 Router.route('/:username', function () {
   var item = Meteor.users.findOne({username: this.params.username});
-  // this.wait(Meteor.subscribe('users', this.params.username));
-  // if (this.ready()) {
-    this.render('profile', {data: item});
-  // }
+  this.render('profile', {data: item});
+  
+  var ITEMS_INCREMENT = 25;
+  Session.setDefault("tweetsLimit", ITEMS_INCREMENT);
+  Meteor.subscribe("tweetsForUsername",this.params.username,Session.get("tweetsLimit"));
 });

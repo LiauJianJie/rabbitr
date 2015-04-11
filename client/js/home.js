@@ -1,4 +1,10 @@
 if (Meteor.isClient) {
+  
+  var ITEMS_INCREMENT = 25;
+  Session.setDefault("tweetsLimit", ITEMS_INCREMENT);
+  Deps.autorun(function() {
+    Meteor.subscribe("tweets", Session.get("tweetsLimit"));
+  });
 
   var checkAndUpdatePost = function() {
     var removeLinebreaksAndAutosize = function() {
@@ -51,6 +57,10 @@ if (Meteor.isClient) {
     },
     userCount: function() {
       return Counts.get("accountCounter");
+    },
+    moreResults: function() {
+      console.log(Tweets.find().count() + " vs " + Session.get("tweetsLimit"));
+      return (Tweets.find().count() >= Session.get("tweetsLimit"));
     }
   });
 
